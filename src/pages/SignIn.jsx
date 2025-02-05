@@ -5,7 +5,14 @@ function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/dashboard');
+    // console.log(e.target.email.value, e.target.password.value);
+    // console.log(import.meta.env.VITE_USERNAME, import.meta.env.VITE_PASSWORD);
+
+    if (e.target.email.value === import.meta.env.VITE_USERNAME && e.target.password.value === import.meta.env.VITE_PASSWORD) {
+      navigate('/dashboard');
+
+    }
+
   };
 
   return (
@@ -15,11 +22,11 @@ function SignIn() {
           <header>Login</header>
           <form onSubmit={handleSubmit}>
             <div className="field input-field">
-              <input type="email" placeholder="Email" className="input" required />
+              <input type="email" placeholder="Email" className="input" name='email' required />
             </div>
 
             <div className="field input-field">
-              <input type="password" placeholder="Password" className="password" required />
+              <input type="password" placeholder="Password" className="password" name='password' required />
             </div>
 
             <div className="form-link">
