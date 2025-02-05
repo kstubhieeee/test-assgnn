@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 function SignIn() {
   const navigate = useNavigate();
-
+  const [tracker, setTracker] = useState("")
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(e.target.email.value, e.target.password.value);
@@ -10,7 +11,8 @@ function SignIn() {
 
     if (e.target.email.value === import.meta.env.VITE_USERNAME && e.target.password.value === import.meta.env.VITE_PASSWORD) {
       navigate('/dashboard');
-
+    } else {
+      setTracker("Invalid email id or password")
     }
 
   };
@@ -58,7 +60,13 @@ function SignIn() {
             <span>Login with Google</span>
           </a>
         </div>
+        {
+          tracker && (
+            <div className='tracker-class'>{tracker}</div>
+          )
+        }
       </div>
+
     </section>
   );
 }
